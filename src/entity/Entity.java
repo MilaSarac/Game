@@ -39,7 +39,7 @@ public class Entity{
 	public boolean alive = true;
 	
 	public boolean dying = false;
-	int dyingCounter = 0;
+	public int dyingCounter = 0;
 		
 	// Podesavanja kolizije
 	public int solidAreaDefaultX;
@@ -116,6 +116,10 @@ public class Entity{
 			if(dying == true) {
 				dyingAnimation(g2);
 			}
+			if (dyingCounter > 25) {
+				dying = false;
+				dyingCounter = 0;
+			}
 			
 			if (this instanceof EnemyPlayer) {
 				
@@ -142,13 +146,13 @@ public class Entity{
 		if(dyingCounter > 5 && dyingCounter <= 10) {
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 		}
-		if(dyingCounter <= 5) {
+		if(dyingCounter > 10 && dyingCounter <= 15) {
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
 		}
-		if(dyingCounter <= 5) {
+		if(dyingCounter > 15 && dyingCounter <= 20) {
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 		}
-		if(dyingCounter <= 5) {
+		if(dyingCounter > 20 && dyingCounter <= 25) {
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
 		}
 	}

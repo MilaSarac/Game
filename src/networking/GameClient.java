@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import base.UserDAO;
 import entity.EnemyPlayer;
+import entity.Player;
 import main.GamePanel;
 import main.Sound;
 
@@ -71,16 +72,27 @@ public class GameClient extends Thread {
 			switch (packetType) {
 				case GameServer.youWinPacket: {
 					// TODO: YOU WIN! SCREEN
+					gp.stopMusic();
+					gp.playMusic(Sound.winMusic);
 					gp.gameState = GamePanel.winState;
 					// azuriraj da je igrac onlajn kada klikne opciju 
 					// back to menu ili oflajn ako exituje
 					System.out.println("You win!");
+					
+//					gp.player = new Player(gp, gp.keyH);
+//					gp.enemy = new EnemyPlayer(gp);
+//					gp.tileM.loadMap("/maps/mapa35x35.txt");
+					
 					break;
 				}
 				case GameServer.stopEnemyProjectilePacket: {
 					gp.enemy.enemyProjectile.alive = false;
 					if (dataString.trim().equalsIgnoreCase("0")) {
 						gp.player.hp -= gp.enemy.enemyProjectile.attack;
+
+						gp.player.dyingCounter = 0;
+						gp.player.dying = true;
+						
 						if (gp.player.hp <= 0) {
 							// TODO: YOU LOSE! SCREEN
 							gp.gameState = GamePanel.loseState;
@@ -93,6 +105,9 @@ public class GameClient extends Thread {
 							// back to menu ili oflajn ako exituje
 							sendDataToServer(GameServer.youWinPacket, "youWin");
 							System.out.println("You lost!");
+							
+							gp.stopMusic();
+							gp.playMusic(Sound.loseMusic);
 						}
 					}
 					break;

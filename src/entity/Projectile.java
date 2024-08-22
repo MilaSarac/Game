@@ -101,6 +101,9 @@ public class Projectile extends Entity{
 			gp.player.damageWall(hitCoordinates[0], hitCoordinates[1]);
 			
 		} else if (hitEnemy) {
+
+			gp.enemy.dyingCounter = 0;
+			gp.enemy.dying = true;
 			
 			gp.socketClient.sendDataToServer(GameServer.stopEnemyProjectilePacket, "0");
 			System.out.println("Protivnik pogodjen!");

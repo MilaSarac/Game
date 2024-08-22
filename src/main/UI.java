@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -110,6 +111,7 @@ public class UI {
 	public void drawWinScreen() {
 		g2.setColor(new Color(0, 0, 0, 160));
 		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
 		
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 144F));
 		String text = "YOU WIN";
@@ -160,6 +162,7 @@ public class UI {
 	public void drawLoseScreen() {
 		g2.setColor(new Color(0, 0, 0, 160));
 		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
 		
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 144F));
 		String text = "YOU LOST";

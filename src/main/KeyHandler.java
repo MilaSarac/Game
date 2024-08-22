@@ -7,6 +7,8 @@ import base.InvitePlayerForm;
 import base.LoginForm;
 import base.SignupForm;
 import base.UserDAO;
+import entity.EnemyPlayer;
+import entity.Player;
 import networking.GameServer;
 import networking.OnlineUser;
 
@@ -142,6 +144,7 @@ public class KeyHandler implements KeyListener{
 			}
 		}
 		
+		//TODO: Spojiti u jedan game end state
 		// WIN STATE
 		if (gp.gameState == GamePanel.winState) {
 			switch (code) {
@@ -162,12 +165,16 @@ public class KeyHandler implements KeyListener{
 				}
 				break; 
 			case KeyEvent.VK_ENTER:
-				// SINGLEPLAYER
+				// BACK TO MAIN MENU
 				if (gp.ui.commandNum == 0) {
 					UserDAO.updateUserState(gp.user.getUsername(), UserDAO.online);
-					gp.stopMusic();
-					gp.playMusic(Sound.winMusic);
 					gp.gameState = GamePanel.playState;
+					gp.stopMusic();
+					gp.playMusic(Sound.mainMusic);
+					
+					gp.player = new Player(gp, gp.keyH);
+					gp.enemy = new EnemyPlayer(gp);
+					gp.tileM.loadMap("/maps/mapa35x35.txt");
 				}
 				// TODO: Ukloni korisnika iz liste na serveru
 				// EXIT
@@ -209,12 +216,16 @@ public class KeyHandler implements KeyListener{
 				}
 				break; 
 			case KeyEvent.VK_ENTER:
-				// SINGLEPLAYER
+				// BACK TO MAIN MENU
 				if (gp.ui.commandNum == 0) {
 					UserDAO.updateUserState(gp.user.getUsername(), UserDAO.online);
-					gp.stopMusic();
-					gp.playMusic(Sound.loseMusic);
 					gp.gameState = GamePanel.playState;
+					gp.stopMusic();
+					gp.playMusic(Sound.mainMusic);
+					
+					gp.player = new Player(gp, gp.keyH);
+					gp.enemy = new EnemyPlayer(gp);
+					gp.tileM.loadMap("/maps/mapa35x35.txt");
 				}
 				// TODO: Ukloni korisnika iz liste na serveru
 				// EXIT

@@ -1,7 +1,4 @@
-/META-INF/
-/base/
-/entity/
 /main/
-/networking/
 /object/
-/tile/
+/networking/
+/entity/

@@ -326,7 +326,7 @@ public class GamePanel extends JPanel implements Runnable {
 		super.paintComponent(g);		
 		Graphics2D g2 = (Graphics2D)g;
 
-		if (gameState == inGameState) {	
+		if (gameState == inGameState || gameState == loseState || gameState == winState) {	
 			// Renderujemo plocice:
 			tileM.draw(g2);	
 			// Dodajemo sve entitete u entityList:

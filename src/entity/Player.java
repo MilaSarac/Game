@@ -113,6 +113,14 @@ public class Player extends Entity{
 				break;
 		}	
 		
+		if(dying == true) {
+			dyingAnimation(g2);
+		}
+		if (dyingCounter > 25) {
+			dying = false;
+			dyingCounter = 0;
+		}
+		
 		// HP bar
 		if (this instanceof Player) {
 			

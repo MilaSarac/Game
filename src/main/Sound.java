@@ -11,7 +11,7 @@ public class Sound {
 
 	
 	Clip clip;
-	URL soundURL[] = new URL[6];
+	URL soundURL[] = new URL[8];
 	public static final int battleMusic = 0;
 	public static final int mainMusic = 1;
 	public static final int shoot = 2;
