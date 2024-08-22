@@ -298,6 +298,10 @@ public class GamePanel extends JPanel implements Runnable {
 			// PROJECTILE UPDATE
 			projectileUpdate();
 			break;
+		case winState:
+			break;
+		case loseState:
+			break;
 		default:
 			break;
 		}

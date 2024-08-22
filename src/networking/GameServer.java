@@ -48,6 +48,8 @@ public class GameServer extends Thread {
 	public static final String stopEnemyProjectilePacket = "11"; // 11:hitEnemy(0 - true, 1 - false)
 	
 	public static final String youWinPacket = "12"; // 12:
+	
+	public static final String logoutPacket = "13";
 		
 	public boolean battleRunning = false;
 		
@@ -61,7 +63,7 @@ public class GameServer extends Thread {
 	public List<OnlineUser> onlineUsers;
 	public Thread battleThread;
 	
-	private OnlineUser getOnlineUserByUsername(String username) {
+	public OnlineUser getOnlineUserByUsername(String username) {
 		for (int i = 0; i < onlineUsers.size(); i++) {
 			if (onlineUsers.get(i).getUsername().equals(username)) {
 				return onlineUsers.get(i);
@@ -174,6 +176,10 @@ public class GameServer extends Thread {
 					onlineUsers.add(connectedUser);
 					
 					System.out.println("Korisnik dodat u listu onlajn korisnika servera.");
+					break;
+				}
+				case GameServer.logoutPacket:{
+					onlineUsers.remove(getOnlineUserByUsername(dataString.trim()));
 					break;
 				}
 				// 01

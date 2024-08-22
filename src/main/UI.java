@@ -108,11 +108,102 @@ public class UI {
 	}
 	
 	public void drawWinScreen() {
+		g2.setColor(new Color(0, 0, 0, 160));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+		
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 144F));
+		String text = "YOU WIN";
+		int x = getXforCenteredText(text) - 8;
+		int y = GamePanel.tileSize*5;
+		g2.setColor(Color.black);
+		g2.drawString(text, x+5, y+5);
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		
+		// BACK TO MENU
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
+		text = "BACK TO MENU";
+		x = getXforCenteredText(text);
+		y += GamePanel.tileSize*4 + 72;
+		g2.setColor(Color.black);
+		g2.drawString(text, x+3, y+3);
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		if (commandNum == 0) {
+			
+			g2.setColor(Color.black);
+			g2.drawString(">", x - GamePanel.tileSize + 2, y + 2);
+
+			g2.setColor(Color.white);
+			g2.drawString(">", x - GamePanel.tileSize, y);
+		}
+		
+		// EXIT
+		text = "EXIT";
+		x = getXforCenteredText(text);
+		y += GamePanel.tileSize;
+		g2.setColor(Color.black);
+		g2.drawString(text, x+3, y+3);
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		if (commandNum == 1) {
+			
+			g2.setColor(Color.black);
+			g2.drawString(">", x - GamePanel.tileSize + 2, y + 2);
+
+			g2.setColor(Color.white);
+			g2.drawString(">", x - GamePanel.tileSize, y);
+		}
 		
 	}
 	
 	public void drawLoseScreen() {
+		g2.setColor(new Color(0, 0, 0, 160));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 		
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 144F));
+		String text = "YOU LOST";
+		int x = getXforCenteredText(text) - 8;
+		int y = GamePanel.tileSize*5;
+		g2.setColor(Color.black);
+		g2.drawString(text, x+5, y+5);
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		
+		// BACK TO MENU
+		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
+		text = "BACK TO MENU";
+		x = getXforCenteredText(text);
+		y += GamePanel.tileSize*4 + 72;
+		g2.setColor(Color.black);
+		g2.drawString(text, x+3, y+3);
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		if (commandNum == 0) {
+			
+			g2.setColor(Color.black);
+			g2.drawString(">", x - GamePanel.tileSize + 2, y + 2);
+
+			g2.setColor(Color.white);
+			g2.drawString(">", x - GamePanel.tileSize, y);
+		}
+		
+		// EXIT
+		text = "EXIT";
+		x = getXforCenteredText(text);
+		y += GamePanel.tileSize;
+		g2.setColor(Color.black);
+		g2.drawString(text, x+3, y+3);
+		g2.setColor(Color.white);
+		g2.drawString(text, x, y);
+		if (commandNum == 1) {
+			
+			g2.setColor(Color.black);
+			g2.drawString(">", x - GamePanel.tileSize + 2, y + 2);
+
+			g2.setColor(Color.white);
+			g2.drawString(">", x - GamePanel.tileSize, y);
+		}
 	}
 	
 	public void drawPlayScreen() {
@@ -324,13 +415,13 @@ public class UI {
 				drawReadyToShoot();	
 			}
 		}
-//		// WIN STATE
-//		if (gp.gameState == GamePanel.winState) {
-//			drawWinScreen();
-//		}
-//		// LOSE STATE
-//		if (gp.gameState == GamePanel.loseState) {
-//			drawLoseScreen();
-//		}
+		// WIN STATE
+		if (gp.gameState == GamePanel.winState) {
+			drawWinScreen();
+		}
+		// LOSE STATE
+		if (gp.gameState == GamePanel.loseState) {
+			drawLoseScreen();
+		}
 	}	
 }

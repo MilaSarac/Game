@@ -71,7 +71,7 @@ public class GameClient extends Thread {
 			switch (packetType) {
 				case GameServer.youWinPacket: {
 					// TODO: YOU WIN! SCREEN
-					// gp.gameState = GamePanel.winState;
+					gp.gameState = GamePanel.winState;
 					// azuriraj da je igrac onlajn kada klikne opciju 
 					// back to menu ili oflajn ako exituje
 					System.out.println("You win!");
@@ -83,7 +83,7 @@ public class GameClient extends Thread {
 						gp.player.hp -= gp.enemy.enemyProjectile.attack;
 						if (gp.player.hp <= 0) {
 							// TODO: YOU LOSE! SCREEN
-							// gp.gameState = GamePanel.loseState;
+							gp.gameState = GamePanel.loseState;
 							// nema pomeranja
 							// siv ekran koji prekriva dosadasnju mapu
 							// opcije:

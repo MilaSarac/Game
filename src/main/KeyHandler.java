@@ -8,6 +8,7 @@ import base.LoginForm;
 import base.SignupForm;
 import base.UserDAO;
 import networking.GameServer;
+import networking.OnlineUser;
 
 public class KeyHandler implements KeyListener{
 	
@@ -127,6 +128,7 @@ public class KeyHandler implements KeyListener{
 				if (gp.ui.commandNum == 2) {
                     if (gp.user != null) {
                     	System.out.println("Logging out the user...");
+                    	gp.socketClient.sendDataToServer(GameServer.logoutPacket, gp.user.getUsername());
                     	if(UserDAO.logoutUser(gp.user.getUsername())) {
                     		System.out.println("User je uspesno odlogovan!");
                     	}
@@ -140,7 +142,98 @@ public class KeyHandler implements KeyListener{
 			}
 		}
 		
-		// WIN STATE / LOSE STATE
+		// WIN STATE
+		if (gp.gameState == GamePanel.winState) {
+			switch (code) {
+			case KeyEvent.VK_W:
+				gp.playSE(Sound.cursor, 10);
+				if (gp.ui.commandNum == 0) {
+					gp.ui.commandNum = 1;
+				} else {
+					gp.ui.commandNum--;
+				}
+				break; 
+			case KeyEvent.VK_S:
+				gp.playSE(Sound.cursor, 10);
+				if (gp.ui.commandNum == 1) {
+					gp.ui.commandNum = 0;
+				} else {
+					gp.ui.commandNum++;
+				}
+				break; 
+			case KeyEvent.VK_ENTER:
+				// SINGLEPLAYER
+				if (gp.ui.commandNum == 0) {
+					UserDAO.updateUserState(gp.user.getUsername(), UserDAO.online);
+					gp.stopMusic();
+					gp.playMusic(Sound.winMusic);
+					gp.gameState = GamePanel.playState;
+				}
+				// TODO: Ukloni korisnika iz liste na serveru
+				// EXIT
+				if (gp.ui.commandNum == 1) {
+                    if (gp.user != null) {
+                    	System.out.println("Logging out the user...");
+                    	//gp.socketServer.onlineUsers.remove(gp.socketServer.getOnlineUserByUsername(gp.user.getUsername()));
+                    	gp.socketClient.sendDataToServer(GameServer.logoutPacket, gp.user.getUsername());
+                    	if(UserDAO.logoutUser(gp.user.getUsername())) {
+                    		System.out.println("User je uspesno odlogovan!");
+                    	}
+                    	else {
+                    		System.out.println("User nije odlogovan!");
+                    	}
+                    }
+                    System.exit(0);
+                }
+				break; 
+			}
+		}
+		
+		//LOSE STATE
+		if (gp.gameState == GamePanel.loseState) {
+			switch (code) {
+			case KeyEvent.VK_W:
+				gp.playSE(Sound.cursor, 10);
+				if (gp.ui.commandNum == 0) {
+					gp.ui.commandNum = 1;
+				} else {
+					gp.ui.commandNum--;
+				}
+				break; 
+			case KeyEvent.VK_S:
+				gp.playSE(Sound.cursor, 10);
+				if (gp.ui.commandNum == 1) {
+					gp.ui.commandNum = 0;
+				} else {
+					gp.ui.commandNum++;
+				}
+				break; 
+			case KeyEvent.VK_ENTER:
+				// SINGLEPLAYER
+				if (gp.ui.commandNum == 0) {
+					UserDAO.updateUserState(gp.user.getUsername(), UserDAO.online);
+					gp.stopMusic();
+					gp.playMusic(Sound.loseMusic);
+					gp.gameState = GamePanel.playState;
+				}
+				// TODO: Ukloni korisnika iz liste na serveru
+				// EXIT
+				if (gp.ui.commandNum == 1) {
+                    if (gp.user != null) {
+                    	System.out.println("Logging out the user...");
+                    	gp.socketClient.sendDataToServer(GameServer.logoutPacket, gp.user.getUsername());
+                    	if(UserDAO.logoutUser(gp.user.getUsername())) {
+                    		System.out.println("User je uspesno odlogovan!");
+                    	}
+                    	else {
+                    		System.out.println("User nije odlogovan!");
+                    	}
+                    }
+                    System.exit(0);
+                }
+				break; 
+			}
+		}
 		
 	}
 

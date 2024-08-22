@@ -18,6 +18,8 @@ public class Sound {
 	public static final int chipWall = 3;
 	public static final int reload = 4;
 	public static final int cursor = 5;
+	public static final int winMusic = 6;
+	public static final int loseMusic = 7;
 	
 	public Sound() {
 		
@@ -27,6 +29,8 @@ public class Sound {
 		soundURL[3] = getClass().getResource("/sound/chip_wall.wav");
 		soundURL[4] = getClass().getResource("/sound/reload.wav");
 		soundURL[5] = getClass().getResource("/sound/cursor.wav");
+		soundURL[6] = getClass().getResource("/sound/fanfare.wav");
+		soundURL[7] = getClass().getResource("/sound/gameover.wav");
 	}
 	
 	public void setFile(int i, float decibelOffset) {
