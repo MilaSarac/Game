@@ -110,16 +110,16 @@ public class UI {
 	
 	public void drawWinScreen() {
 		g2.setColor(new Color(0, 0, 0, 160));
-		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 		
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 144F));
-		String text = "YOU WIN";
+		String text = "YOU WIN!";
 		int x = getXforCenteredText(text) - 8;
-		int y = GamePanel.tileSize*5;
+		int y = GamePanel.tileSize*3;
 		g2.setColor(Color.black);
 		g2.drawString(text, x+5, y+5);
-		g2.setColor(Color.white);
+		g2.setColor(Color.green);
 		g2.drawString(text, x, y);
 		
 		// BACK TO MENU
@@ -161,16 +161,16 @@ public class UI {
 	
 	public void drawLoseScreen() {
 		g2.setColor(new Color(0, 0, 0, 160));
-		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+		g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 		
 		g2.setFont(g2.getFont().deriveFont(Font.BOLD, 144F));
-		String text = "YOU LOST";
+		String text = "YOU LOSE!";
 		int x = getXforCenteredText(text) - 8;
-		int y = GamePanel.tileSize*5;
+		int y = GamePanel.tileSize*3;
 		g2.setColor(Color.black);
 		g2.drawString(text, x+5, y+5);
-		g2.setColor(Color.white);
+		g2.setColor(Color.red);
 		g2.drawString(text, x, y);
 		
 		// BACK TO MENU
