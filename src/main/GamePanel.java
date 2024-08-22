@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -370,8 +371,10 @@ public class GamePanel extends JPanel implements Runnable {
 			entityList.clear();
 		} 
 		// Renderujemo UI
+		g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 		ui.draw(g2);
 		g2.dispose();
+		
 	}
 	
 	public void playMusic(int i) {
